@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Job Search</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+
+  {% if job_list %}
+    <h2>Results:</h2>
+    <ul>
+      {% for job in job_list %}
+        <li>
+          <a href="{% url 'job_description' job.id %}">{{ job.title }}</a> - {{ job.location }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No jobs found.</p>
+  {% endif %}
+{% endblock %}

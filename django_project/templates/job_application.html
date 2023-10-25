@@ -1,0 +1,33 @@
+```html
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold mb-4">Job Application</h1>
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      <div>
+        <label for="job_title" class="block text-sm font-medium text-gray-700">Job Title</label>
+        <input type="text" name="job_title" id="job_title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ job.title }}" readonly>
+      </div>
+      <div>
+        <label for="cover_letter" class="block text-sm font-medium text-gray-700">Cover Letter</label>
+        <textarea name="cover_letter" id="cover_letter" rows="5" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+      </div>
+      <div>
+        <label for="cv" class="block text-sm font-medium text-gray-700">CV</label>
+        <select name="cv" id="cv" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          {% for cv in user_cvs %}
+            <option value="{{ cv.id }}">{{ cv.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Apply
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+```

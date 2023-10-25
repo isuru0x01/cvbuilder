@@ -1,0 +1,23 @@
+```html
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl font-bold mb-4">{{ job.title }}</h1>
+    <h2 class="text-2xl font-semibold mb-2">Job Description</h2>
+    <p class="mb-4">{{ job.description }}</p>
+    <h2 class="text-2xl font-semibold mb-2">Company</h2>
+    <p class="mb-4">{{ job.company }}</p>
+    <h2 class="text-2xl font-semibold mb-2">Location</h2>
+    <p class="mb-4">{{ job.location }}</p>
+    <div class="flex justify-between">
+      <a href="{% url 'job_search' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Back to Search
+      </a>
+      <a href="{% url 'generate_cv' job.id %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Generate CV for this Job
+      </a>
+    </div>
+  </div>
+{% endblock %}
+```
